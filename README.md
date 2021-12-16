@@ -4,7 +4,23 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+A role that simplifies simple classification from ansible_facts.
+
+Classification Proxmox `p24.xlarge` stands for a `Proxmox` host with `ansible_processor_count` equals `24` and `ansible_memtotal_mb` greater than `32456`.
+Classification Raspberry `a4.large` stands for a `Arm` host with `ansible_processor_count` equals `4` and `ansible_memtotal_mb` between `4096` and `8096`.
+Classification Generic `g4.nano` stands for a `Generic` host with `ansible_processor_count` equals `4` and `ansible_memtotal_mb` between `4096` and `8096`.
+
+In the Proxmox example the leading letter is based on `ansible_kernel` like this:
+
+```yaml
+  - name: Proxmox Hypervisor
+    set_fact:
+      type: p
+      type_desc: "{{ ansible_distribution }} Proxmox"
+    when: '"pve" in ansible_kernel'
+```
+
+These maps are generated base on 2 variables: `size_map` and `type_map` which both can be found in defaults/main.yml.
 
 Requirements
 ------------
@@ -26,9 +42,27 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
+```yaml
     - hosts: servers
+      vars:
+      type_map:
+        - { name: "Proxmox", letter: "p", kernel_match: "pve" }
+        - { name: "Raspberry", letter: "a", kernel_match: "raspi" }
+        - { name: "Generic", letter: "g", kernel_match: "default" }
+
+      size_map:
+        - { name: "nano", min: 1, max: 1024 }
+        - { name: "micro", min: 1024, max: 2048 }
+        - { name: "small", min: 2048, max: 4092 }
+        - { name: "medium", min: 4092, max: 8184 }
+        - { name: "large", min: 8184, max: 16368 }
+        - { name: "xl", min: 16368, max: 32736 }
+        - { name: "xxl", min: 32736, max: 65472 }
+        - { name: "huge", min: 65472, max: 130944 }
+
       roles:
-         - { role: username.rolename, x: 42 }
+         - pbicskei.classify
+```
 
 License
 -------

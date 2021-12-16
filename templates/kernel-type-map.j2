@@ -1,0 +1,10 @@
+---
+{% for item in type_map %}
+
+  - name: {{ item.name }}
+    set_fact:
+      type: {{ item.letter }}
+      type_desc: {{ item.name }} 
+    when: '"{{ item.kernel_match }}" in ansible_kernel'
+
+{% endfor %}

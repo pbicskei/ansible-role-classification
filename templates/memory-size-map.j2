@@ -1,0 +1,9 @@
+---
+{% for item in size_map %}
+
+  - name: Memory size classification `{{ item.name }}`
+    set_fact:
+      size: {{ item.name }}
+    when: ansible_memtotal_mb > {{ item.min }} and ansible_memtotal_mb <= {{ item.max }}
+
+{% endfor %}
