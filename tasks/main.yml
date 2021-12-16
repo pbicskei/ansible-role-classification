@@ -9,7 +9,7 @@
 - name: Generate all *-map.yml files
   ansible.builtin.template:
     src: "../templates/{{ item }}-map.j2"
-    dest: "tasks/{{ item }}-map.yml"
+    dest: "{{ item }}-map.yml"
   delegate_to: 127.0.0.1
   run_once: yes
   loop:
@@ -24,7 +24,7 @@
 
 - name: cleanup dynamic_size_map
   ansible.builtin.file:
-    path: "tasks/{{ item }}-map.yml"
+    path: "{{ item }}-map.yml"
     state: absent
   delegate_to: 127.0.0.1
   run_once: yes
