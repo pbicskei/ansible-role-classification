@@ -1,50 +1,12 @@
 ---
-# tasks file for host-classification
----
-  - name: For proxmox hypervisors set `v` for `virtualization`
-    set_fact:
-      type: pve
-    when: '"pve" in ansible_kernel'
+  - name: Memory classification
+    include: memory.yml
 
-  - name: For raspberry hosts set `r` for `raspberry`
-    set_fact:
-      type: rpi
-    when: '"raspi" in ansible_kernel'
+  - name: CPU classification
+    include: cpu.yml
 
-  - name: Nano Size memory equals less than 1024mb
-    set_fact:
-      size: nano
-    when: ansible_memtotal_mb <= 1024
-
-  - name: Micro Size memory equals between 1024mb and 2048mb
-    set_fact:
-      size: micro
-    when: ansible_memtotal_mb > 1024 and ansible_memtotal_mb <= 2048
-
-  - name: Small Size memory equals between 2048mb and 4096mb
-    set_fact:
-      size: small
-    when: ansible_memtotal_mb > 2048 and ansible_memtotal_mb <= 4096
-
-  - name: Medium Size memory equals between 4096mb
-    set_fact:
-      size: medium
-    when: ansible_memtotal_mb > 4096 and ansible_memtotal_mb <= 8092
-
-  - name: Large Size memory equals between 8092mb and 16384mb
-    set_fact:
-      size: large
-    when: ansible_memtotal_mb > 8092 and ansible_memtotal_mb <= 16384
-
-  - name: Extra Large Size memory equals between 16384mb and 32468mb
-    set_fact:
-      size: xlarge
-    when: ansible_memtotal_mb > 16384 and ansible_memtotal_mb <= 32468
-
-  - name: Huge Size memory larger than 32468mb
-    set_fact:
-      size: huge
-    when: ansible_memtotal_mb > 32468
+  - name: Kernel classification
+    include: kernel.yml
 
   - name: Classification
     set_fact:
