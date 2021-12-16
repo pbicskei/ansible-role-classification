@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: host-classification
   author: Peter Bicskei
   description: Role which classifies hosts
   company: no company (optional)
@@ -27,11 +28,10 @@ galaxy_info:
   # To view available platforms and versions (or releases), visit:
   # https://galaxy.ansible.com/api/v1/platforms/
   #
-  # platforms:
-  # - name: Fedora
-  #   versions:
-  #   - all
-  #   - 25
+  platforms:
+  - name: Ubuntu
+    versions:
+    - focal
   # - name: SomePlatform
   #   versions:
   #   - all
