@@ -2,11 +2,11 @@
   - name: Memory classification
     include: memory.yml
 
-  - name: CPU classification
-    include: cpu.yml
-
   - name: Kernel classification
     include: kernel.yml
+
+  # - name: CPU classification
+  #   include: cpu.yml
 
   - name: Classification
     set_fact:

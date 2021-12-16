@@ -1,4 +1,1 @@
 ---
-  - name: Classification
-    set_fact:
-      classification: "{{ type }}{{ ansible_processor_vcpus }}.{{ size }}"
