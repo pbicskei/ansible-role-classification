@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: host-classification
+  role_name: classifyHost
   author: Peter Bicskei
   description: Role which classifies hosts
   company: no company (optional)
