@@ -1,3 +1,6 @@
+<img title="a title" alt="Alt text" src="https://app.travis-ci.com/pbicskei/ansible-role-classification.svg
+">
+
 Role Name
 =========
 
