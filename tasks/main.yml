@@ -31,3 +31,15 @@
   loop:
     - memory-size
     - kernel-type
+
+- name: Show type based on kernel
+  debug:
+    msg: "{{ ansible_fqdn }} type: `{{ type }}` description: {{ type_desc }}"
+
+- name: Show size based on memory
+  debug:
+    msg: "{{ ansible_fqdn }} size: `{{ size }}`"
+
+- name: Classification results
+  debug:
+    msg: "{{ ansible_fqdn }}: `{{type}}{{ ansible_processor_cores }}.{{ size }}`, Architecture: `{{ ansible_architecture }}`, Cores: `{{ ansible_processor_cores }}`, vCpus: `{{ ansible_processor_vcpus }}`, Memory: `{{ ansible_memtotal_mb }}mb`"
