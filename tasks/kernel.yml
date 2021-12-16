@@ -1,37 +1,24 @@
 ---
 ## Proxmox
-  - name: For proxmox hypervisors set `v` for `virtualization`
+  - name: Proxmox Hypervisor
     set_fact:
       type: p
-    when: '"pve" in ansible_kernel'
-
-  - name: For proxmox hypervisors set `v` for `virtualization`
-    set_fact:
       type_desc: "proxmox {{ ansible_distribution }}"
     when: '"pve" in ansible_kernel'
 
 ## Raspberry
-  - name: For raspberry hosts set `r` for `raspberry`
+  - name: Raspberry
     set_fact:
       type: r
-    when: '"raspi" in ansible_kernel'
-
-  - name: For raspberry hosts set `r` for `raspberry`
-    set_fact:
-      type_desc: "raspberry {{ ansible_distribution }}"
+      type_desc: "{{ ansible_distribution }} Raspberry"
     when: '"raspi" in ansible_kernel'
 
 ## Generic
-  - name: For raspberry hosts set `r` for `raspberry`
+  - name: Generic
     set_fact:
       type: g
-    when: 
-      - '"raspi" not in ansible_kernel'
-      - '"pve" not in ansible_kernel'
-
-  - name: For raspberry hosts set `r` for `raspberry`
-    set_fact:
       type_desc: "Generic {{ ansible_distribution }}"
     when: 
       - '"raspi" not in ansible_kernel'
       - '"pve" not in ansible_kernel'
+      
