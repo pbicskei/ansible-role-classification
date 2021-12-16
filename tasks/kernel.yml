@@ -1,0 +1,10 @@
+---
+  - name: For proxmox hypervisors set `v` for `virtualization`
+    set_fact:
+      type: v
+    when: '"pve" in ansible_kernel'
+
+  - name: For raspberry hosts set `r` for `raspberry`
+    set_fact:
+      type: r
+    when: '"raspi" in ansible_kernel'
