@@ -18,7 +18,7 @@
 
   - name: For raspberry hosts set `r` for `raspberry`
     set_fact:
-      type: "raspberry {{ ansible_distribution }}"
+      type_desc: "raspberry {{ ansible_distribution }}"
     when: '"raspi" in ansible_kernel'
 
 ## Generic
