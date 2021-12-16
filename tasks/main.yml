@@ -1,13 +1,33 @@
 ---
-  - name: Memory classification
-    include: memory.yml
+# - name: Memory classification
+#   include: memory.yml
 
-  - name: Kernel classification
-    include: kernel.yml
+- name: Set ansible_fqdn
+  set_fact:
+    ansible_fqdn: "{{ ansible_hostname }}.{{ ansible_dns.search[0] }}"
 
-  # - name: CPU classification
-  #   include: cpu.yml
+- name: Generate all *-map.yml files
+  ansible.builtin.template:
+    src: "../templates/{{ item }}-map.j2"
+    dest: "tasks/{{ item }}-map.yml"
+  delegate_to: 127.0.0.1
+  run_once: yes
+  loop:
+    - memory-size
+    - kernel-type
 
-  - name: Classification
-    set_fact:
-      classification: "{{ type }}{{ ansible_processor_vcpus }}.{{ size }}"
+- name: Processing dynamic maps
+  include: "{{ item }}-map.yml"
+  loop:
+    - memory-size
+    - kernel-type
+
+- name: cleanup dynamic_size_map
+  ansible.builtin.file:
+    path: "tasks/{{ item }}-map.yml"
+    state: absent
+  delegate_to: 127.0.0.1
+  run_once: yes
+  loop:
+    - memory-size
+    - kernel-type
