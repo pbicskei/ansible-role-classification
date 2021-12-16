@@ -3,7 +3,7 @@
   - name: Proxmox Hypervisor
     set_fact:
       type: p
-      type_desc: "proxmox {{ ansible_distribution }}"
+      type_desc: "{{ ansible_distribution }} Proxmox"
     when: '"pve" in ansible_kernel'
 
 ## Raspberry
@@ -21,4 +21,3 @@
     when: 
       - '"raspi" not in ansible_kernel'
       - '"pve" not in ansible_kernel'
-      
