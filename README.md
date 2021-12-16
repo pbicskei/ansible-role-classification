@@ -42,26 +42,38 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
+Using the default table:
+
 ```yaml
     - hosts: servers
-      vars:
-      type_map:
-        - { name: "Proxmox", letter: "p", kernel_match: "pve" }
-        - { name: "Raspberry", letter: "a", kernel_match: "raspi" }
-        - { name: "Generic", letter: "g", kernel_match: "default" }
-
-      size_map:
-        - { name: "nano", min: 1, max: 1024 }
-        - { name: "micro", min: 1024, max: 2048 }
-        - { name: "small", min: 2048, max: 4092 }
-        - { name: "medium", min: 4092, max: 8184 }
-        - { name: "large", min: 8184, max: 16368 }
-        - { name: "xl", min: 16368, max: 32736 }
-        - { name: "xxl", min: 32736, max: 65472 }
-        - { name: "huge", min: 65472, max: 130944 }
-
       roles:
          - pbicskei.classify
+```
+
+Using a Custom table:
+
+```yaml
+    - hosts: servers
+      roles:
+         - pbicskei.classify
+      vars:
+        type_map:
+          - { name: "Hypervisor", letter: "hv", kernel_match: "pve" }
+          - { name: "Compute(ARM)", letter: "a", kernel_match: "raspi" }
+          - { name: "Generic", letter: "g", kernel_match: "default" }
+
+        size_map:
+          - { name: "nanite", min: 1, max: 1024 }
+          - { name: "microbe", min: 1024, max: 2048 }
+          - { name: "insect", min: 2048, max: 4092 }
+          - { name: "hamster", min: 4092, max: 8184 }
+          - { name: "dog", min: 8184, max: 16368 }
+          - { name: "horse", min: 16368, max: 32736 }
+          - { name: "elephant", min: 32736, max: 65472 }
+          - { name: "whale", min: 65472, max: 130944 }  
+
+      roles:
+        - pbicskei.classify
 ```
 
 License
