@@ -1,2 +1,5 @@
 # Visual Studio Code Workspaces
 *.code-workspace
+ansible.cfg
+playbook.yml
+inventory
