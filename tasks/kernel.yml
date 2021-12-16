@@ -26,12 +26,12 @@
     set_fact:
       type: g
     when: 
-      - '"raspi" in ansible_kernel'
-      - '"pve" not n ansible_kernel'
+      - '"raspi" not in ansible_kernel'
+      - '"pve" not in ansible_kernel'
 
   - name: For raspberry hosts set `r` for `raspberry`
     set_fact:
       type_desc: "Generic {{ ansible_distribution }}"
     when: 
-      - '"raspi" in ansible_kernel'
+      - '"raspi" not in ansible_kernel'
       - '"pve" not in ansible_kernel'
