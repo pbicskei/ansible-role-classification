@@ -17,7 +17,7 @@
     - kernel-type
 
 - name: Processing dynamic maps
-  include: "{{ item }}-map.yml"
+  include_tasks: "{{ item }}-map.yml"
   loop:
     - memory-size
     - kernel-type
@@ -36,7 +36,10 @@
   set_fact:
     classify_facts:
       classification: "{{type}}{{ ansible_processor_cores }}.{{ size }}"
-      description: "{{ ansible_fqdn }} desc: {{ type_desc }}"
-      details: "{{ ansible_fqdn }}: `{{type}}{{ ansible_processor_cores }}.{{ size }}`, Architecture: `{{ ansible_architecture }}`, Cores: `{{ ansible_processor_cores }}`, vCpus: `{{ ansible_processor_vcpus }}`, Memory: `{{ ansible_memtotal_mb }}mb`"
+      description: "{{ type_desc }}"
+      Architecture: "{{ ansible_architecture }}"
       size: "{{ size }}"
       type: "{{ type }}"
+      cores: "{{ ansible_processor_cores }}"
+      vcpus: "{{ ansible_processor_vcpus }}"
+      memory: "{{ ansible_memtotal_mb }}mb"
