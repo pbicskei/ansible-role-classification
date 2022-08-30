@@ -35,9 +35,9 @@
 - name: Set classification facts
   set_fact:
     classify_facts:
-      classification: "{{type}}{{ ansible_processor_cores }}.{{ size }}"
-      description: "{{ type_desc }}"
-      Architecture: "{{ ansible_architecture }}"
+      class: "{{type}}{{ ansible_processor_cores }}.{{ size }}"
+      desc: "{{ type_desc }}"
+      arch: "{{ ansible_architecture }}"
       size: "{{ size }}"
       type: "{{ type }}"
       cores: "{{ ansible_processor_cores }}"
