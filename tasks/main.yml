@@ -1,11 +1,4 @@
 ---
-# - name: Memory classification
-#   include: memory.yml
-
-- name: Set ansible_fqdn
-  set_fact:
-    ansible_fqdn: "{{ ansible_hostname }}.{{ ansible_dns.search[0] }}"
-
 - name: Generate all *-map.yml files
   ansible.builtin.template:
     src: "../templates/{{ item }}-map.j2"
